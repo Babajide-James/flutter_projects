@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # flutter_application_1
+=======
+# note_book
+>>>>>>> 19f267c5316264154fd5f436b9fe7f507e6f1564
 
 A new Flutter project.
 

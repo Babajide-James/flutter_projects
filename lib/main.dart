@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/bottom/navigation_bottom.dart';
+import 'package:flutter_application_1/bottom/navigation_screens.dart';
 import 'package:flutter_application_1/bottom_list_body/business.dart';
 import 'package:flutter_application_1/bottom_list_body/profile.dart';
 import 'package:flutter_application_1/bottom_list_body/school.dart';
