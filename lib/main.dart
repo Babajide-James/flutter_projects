@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'todo_list/todo_list.dart';
 
-void main (){
-  runApp (MyApp());
+void main() {
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.yellow),
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }

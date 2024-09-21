@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:note_book/todo_navigator/todo_navigator.dart';
 
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -10,17 +9,15 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-
   // void Function(InvalidType)? onChanged;
   // final bool value;
 
   @override
-  Widget build(context){
+  Widget build(context) {
     return Scaffold(
       backgroundColor: Colors.yellow[100],
       body: Container(
-        padding: EdgeInsets.all(20.0),
-
+        padding: const EdgeInsets.all(20.0),
         child: ListView(
           children: [
             ToDoTile(
@@ -30,9 +27,8 @@ class HomePageState extends State<HomePage> {
             ),
             ToDoTile(
               onValue: true,
-              onChanged: (onValue){},
+              onChanged: (onValue) {},
               onNoteName: 'Second Note',
-
             ),
             // ToDoTile(),
             // ToDoTile(),
