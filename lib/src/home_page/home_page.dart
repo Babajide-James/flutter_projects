@@ -41,12 +41,13 @@ class HomePage extends StatelessWidget {
               //   saveEmail = value!;
               // },
               onChanged: bloc.changeEmail,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 hintText: 'user@email.com',
                 labelText: 'EMail Address',
+                errorText: snapshot.error?.toString(),
                 // errorText: 'input a valid EMail address',
-                border: OutlineInputBorder(),
-                icon: Icon(Icons.email),
+                border: const OutlineInputBorder(),
+                icon: const Icon(Icons.email),
               ),
               keyboardType: TextInputType.emailAddress);
         });
@@ -60,7 +61,7 @@ class HomePage extends StatelessWidget {
             decoration: InputDecoration(
               hintText: 'Password',
               labelText: 'Password',
-              errorText: (snapshot.error),
+              errorText: snapshot.error?.toString(),
               border: const OutlineInputBorder(),
               icon: const Icon(Icons.lock),
             ),
