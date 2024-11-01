@@ -1,6 +1,15 @@
 import 'dart:async';
 
 mixin Validator {
+  final validateFullName =
+      StreamTransformer<String, String>.fromHandlers(handleData: (value, sink) {
+    if (value.contains(' ')) {
+      sink.add(value);
+    } else {
+      sink.addError('Input your correct details!');
+    }
+  });
+
   final validateEmail =
       StreamTransformer<String, String>.fromHandlers(handleData: (value, sink) {
     if (value.contains('@') && value.contains('.com')) {

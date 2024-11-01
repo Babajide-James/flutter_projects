@@ -15,15 +15,41 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: <Widget>[
             const Padding(padding: EdgeInsets.all(10)),
+            fullName(),
+            const Padding(padding: EdgeInsets.all(8)),
             email(),
             Container(margin: const EdgeInsets.all(8)),
             password(),
-            Container(margin: const EdgeInsets.all(20)),
+            Container(margin: const EdgeInsets.all(10)),
             button(),
           ],
         ),
       ),
     );
+  }
+
+  Widget fullName() {
+    return StreamBuilder(
+        stream: bloc.fullName,
+        builder: (context, snapshot) {
+          return TextFormField(
+            decoration: InputDecoration(
+              hintText: 'User Name',
+              labelText: 'Full Name',
+              errorText: snapshot.error?.toString(),
+              border: const OutlineInputBorder(),
+              icon: const Icon(Icons.person),
+            ),
+            onChanged: bloc.changeFullName,
+            // validator: (value) {
+            //   if (value!.length < 4) {
+            //     return ('Password must be at least 4 characters!');
+            //   }
+            //   return null;
+            // },
+            // onSaved: (value) => savePassword = value!,
+          );
+        });
   }
 
   Widget email() {
@@ -79,18 +105,16 @@ class HomePage extends StatelessWidget {
   }
 
   Widget button() {
-    return ElevatedButton(
-      onPressed: () {
-        // if (formKey.currentState!.validate()) {
-        //   formKey.currentState!.save();
-        // print('$saveEmail and $savePassword');
-      },
-      style: const ButtonStyle(
-        iconColor: WidgetStatePropertyAll(
-          Color.fromARGB(255, 6, 54, 94),
-        ),
-      ),
-      child: const Text('Submit Here!'),
-    );
+    return StreamBuilder(
+        stream: bloc.validSubmit,
+        builder: (context, snapshot) {
+          return ElevatedButton(
+            onPressed: snapshot.hasData ? bloc.submit : null,
+            // if (formKey.currentState!.validate()) {
+            //   formKey.currentState!.save();
+            // print('$saveEmail and $savePassword');
+            child: const Text('Submit Here!'),
+          );
+        });
   }
 }

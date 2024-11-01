@@ -17,7 +17,7 @@ class MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Mastering Bloc'),
+          title: const Text('Mastering Bloc Forms'),
           centerTitle: true,
           backgroundColor: const Color.fromARGB(255, 205, 211, 216),
         ),
