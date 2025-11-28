@@ -13,11 +13,9 @@ class CategoryItem extends StatelessWidget {
   final String id;
   final Color color;
   void onTaps(BuildContext ctx) {
-    Navigator.of(ctx).push(
-      MaterialPageRoute(
-        builder: (_) => FoodScreen(categoryId: id, categoryTitle: item),
-      ),
-    );
+    Navigator.of(
+      ctx,
+    ).pushNamed('/food_route', arguments: {'id': id, 'title': item});
   }
 
   @override

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../screens/home_screen.dart';
+import '../screens/food_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -37,6 +38,7 @@ class _MyAppState extends State<MyApp> {
         ),
         body: HomeScreen(),
       ),
+      routes: {'/food_route': (ctx) => FoodScreen()},
     );
   }
 }

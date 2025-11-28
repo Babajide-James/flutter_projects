@@ -2,18 +2,22 @@ import 'package:flutter/material.dart';
 
 class FoodScreen extends StatelessWidget {
   const FoodScreen({
-    required this.categoryTitle,
-    required this.categoryId,
+    // required this.categoryTitle,
+    // required this.categoryId,
     super.key,
   });
-  final String categoryTitle;
-  final String categoryId;
+  // final String categoryTitle;
+  // final String categoryId;
 
   @override
   Widget build(context) {
+    final routeArgs =
+        ModalRoute.of(context)?.settings.arguments as Map<String, String>;
+    final categoryTitle = routeArgs['title'];
+    final categoryId = routeArgs['id'];
     return Scaffold(
       appBar: AppBar(
-        title: Text(categoryTitle),
+        title: Text(categoryTitle!),
         centerTitle: true,
         backgroundColor: Theme.of(context).primaryColor,
         foregroundColor: Theme.of(context).primaryColorLight,
