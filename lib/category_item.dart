@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../screens/food_screen.dart';
+// import '../screens/food_screen.dart';
 
 class CategoryItem extends StatelessWidget {
+  static const routeName = '/food_screen';
   const CategoryItem({
     required this.id,
     required this.color,
@@ -15,7 +16,7 @@ class CategoryItem extends StatelessWidget {
   void onTaps(BuildContext ctx) {
     Navigator.of(
       ctx,
-    ).pushNamed('/food_route', arguments: {'id': id, 'title': item});
+    ).pushNamed(CategoryItem.routeName, arguments: {'id': id, 'title': item});
   }
 
   @override

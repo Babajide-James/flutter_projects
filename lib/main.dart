@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../screens/home_screen.dart';
 import '../screens/food_screen.dart';
+import 'category_item.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,20 +26,12 @@ class _MyAppState extends State<MyApp> {
           bodyLarge: TextStyle(fontFamily: 'RobotoCondensed', fontSize: 28),
         ),
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).primaryColor,
-          leading: Drawer(
-            backgroundColor: Theme.of(context).primaryColor,
-            elevation: 0,
-            child: IconButton(icon: Icon(Icons.menu), onPressed: () {}),
-          ),
-          title: Text('DeliMeals', style: TextStyle(color: Colors.blue[200])),
-          // centerTitle: true,
-        ),
-        body: HomeScreen(),
-      ),
-      routes: {'/food_route': (ctx) => FoodScreen()},
+      // home:  HomeScreen(),
+      initialRoute: '/',
+      routes: {
+        '/': (ctx) => HomeScreen(),
+        CategoryItem.routeName: (ctx) => FoodScreen(),
+      },
     );
   }
 }

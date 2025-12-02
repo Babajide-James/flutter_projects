@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
+import '../dummies.dart';
 
 class FoodScreen extends StatelessWidget {
-  const FoodScreen({
-    // required this.categoryTitle,
-    // required this.categoryId,
-    super.key,
-  });
-  // final String categoryTitle;
-  // final String categoryId;
+  const FoodScreen({super.key});
 
   @override
   Widget build(context) {
     final routeArgs =
-        ModalRoute.of(context)?.settings.arguments as Map<String, String>;
+        ModalRoute.of(context)!.settings.arguments as Map<String, String>;
     final categoryTitle = routeArgs['title'];
     final categoryId = routeArgs['id'];
+    final categoryFood = FOOD_DUMMIES.where((ctx) {
+      return ctx.categories.contains(categoryId);
+    }).toList();
+    print('itemcount is $categoryFood');
     return Scaffold(
       appBar: AppBar(
         title: Text(categoryTitle!),
@@ -22,7 +21,11 @@ class FoodScreen extends StatelessWidget {
         backgroundColor: Theme.of(context).primaryColor,
         foregroundColor: Theme.of(context).primaryColorLight,
       ),
-      body: Center(child: Text('This is a New Page for Food!')),
+      body: ListView.builder(
+        itemCount: categoryFood.length,
+        itemBuilder: (ctx, index) =>
+            Center(child: Text(categoryFood[index].title)),
+      ),
     );
   }
 }
