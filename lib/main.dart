@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import './screens/ingredient_screen.dart';
 import '../screens/home_screen.dart';
 import '../screens/food_screen.dart';
-import 'category_item.dart';
+import './category_item.dart';
+import './food_item.dart';
 
 void main() => runApp(MyApp());
 
@@ -30,7 +32,8 @@ class _MyAppState extends State<MyApp> {
       initialRoute: '/',
       routes: {
         '/': (ctx) => HomeScreen(),
-        CategoryItem.routeName: (ctx) => FoodScreen(),
+        FoodScreen.routeName: (ctx) => FoodScreen(),
+        IngredientScreen.routeName: (ctx) => IngredientScreen(),
       },
     );
   }
