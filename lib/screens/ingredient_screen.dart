@@ -22,7 +22,7 @@ class IngredientScreen extends StatelessWidget {
                 idImage.imageUrl,
                 fit: BoxFit.cover,
                 width: double.infinity,
-                height: 300,
+                height: 400,
               ),
             ),
             Container(
@@ -50,7 +50,7 @@ class IngredientScreen extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(5),
               // margin: EdgeInsets.all(10),
-              height: 150,
+              height: 200,
               width: MediaQuery.of(context).size.width * 0.8,
               child: ListView.builder(
                 itemCount: idImage.ingredients.length,
@@ -94,28 +94,33 @@ class IngredientScreen extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 color: Colors.white,
-                border: BoxBorder.all(width: 1.5),
-                borderRadius: BorderRadius.all(Radius.circular(15)),
+                // border: BoxBorder.all(width: 1.5),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  topRight: Radius.circular(15),
+                ),
               ),
-              height: 150,
+              height: 200,
               width: MediaQuery.of(context).size.width * 0.75,
               padding: EdgeInsets.all(5),
               child: ListView.builder(
-                itemBuilder: (ctx, index) => SizedBox(
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      minRadius: 10,
-                      maxRadius: 15,
-                      child: Text('#${index + 1}'),
-                    ),
+                itemBuilder: (ctx, index) => Column(
+                  children: [
+                    ListTile(
+                      leading: CircleAvatar(
+                        minRadius: 10,
+                        maxRadius: 15,
+                        child: Text('#${index + 1}'),
+                      ),
 
-                    title: Text(
-                      idImage.steps[index],
-                      style: TextStyle(fontSize: 16),
+                      title: Text(
+                        idImage.steps[index],
+                        style: TextStyle(fontSize: 16),
+                      ),
                     ),
-                  ),
+                    Divider(),
+                  ],
                 ),
-
                 itemCount: idImage.steps.length,
               ),
             ),
