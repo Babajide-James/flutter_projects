@@ -7,15 +7,24 @@ import '../category_item.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
+  void onTap(ctx) {
+    return Scaffold.of(ctx).openDrawer();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
-        leading: Drawer(
-          backgroundColor: Theme.of(context).primaryColor,
-          elevation: 0,
-          child: IconButton(icon: Icon(Icons.menu), onPressed: () {}),
+        leading: GestureDetector(
+          onTap: () => onTap(context),
+          child: Drawer(
+            backgroundColor: Theme.of(context).primaryColor,
+            elevation: 0,
+            child: Column(
+              children: [Icon(Icons.person), Icon(Icons.door_back_door)],
+            ),
+          ),
         ),
         title: Text('DeliMeals', style: TextStyle(color: Colors.blue[200])),
         // centerTitle: true,

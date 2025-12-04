@@ -48,9 +48,7 @@ class FoodItem extends StatelessWidget {
   }
 
   void onTap(BuildContext ctx) {
-    Navigator.of(
-      ctx,
-    ).pushNamed(IngredientScreen.routeName, arguments: ingredients);
+    Navigator.of(ctx).pushNamed(IngredientScreen.routeName, arguments: id);
   }
 
   @override
