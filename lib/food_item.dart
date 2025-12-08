@@ -14,6 +14,7 @@ class FoodItem extends StatelessWidget {
     required this.id,
     required this.title,
     required this.ingredients,
+    required this.removeItem,
   });
   final String imageUrl;
   final int duration;
@@ -22,6 +23,7 @@ class FoodItem extends StatelessWidget {
   final Affordability affordability;
   final Complexity complexity;
   final List<String> ingredients;
+  final Function removeItem;
 
   String get complexityText {
     if (complexity == Complexity.simple) {
@@ -47,8 +49,14 @@ class FoodItem extends StatelessWidget {
     }
   }
 
-  void onTap(BuildContext ctx) {
-    Navigator.of(ctx).pushNamed(IngredientScreen.routeName, arguments: id);
+  void onTap(BuildContext ctx) async {
+    final result = await Navigator.of(
+      ctx,
+    ).pushNamed(IngredientScreen.routeName, arguments: id);
+    if (result != null) {
+      final deleteItem = result as FoodModal;
+      removeItem(deleteItem.id);
+    }
   }
 
   @override

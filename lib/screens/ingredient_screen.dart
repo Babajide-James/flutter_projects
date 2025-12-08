@@ -127,6 +127,10 @@ class IngredientScreen extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.of(context).pop(idImage),
+        child: Icon(Icons.delete),
+      ),
     );
   }
 }

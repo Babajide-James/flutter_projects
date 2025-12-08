@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import './screens/ingredient_screen.dart';
 import '../screens/home_screen.dart';
-import '../screens/tabs_route.dart';
+import 'screens/filter_route.dart';
+import 'widgets/bottom_nav.dart';
 import '../screens/food_screen.dart';
-// import './category_item.dart';
-// import './food_item.dart';
 
 void main() => runApp(MyApp());
 
@@ -32,9 +31,10 @@ class _MyAppState extends State<MyApp> {
       // home:  HomeScreen(),
       initialRoute: '/',
       routes: {
-        '/': (ctx) => TabsRoute(),
+        '/': (ctx) => BottomNav(),
         FoodScreen.routeName: (ctx) => FoodScreen(),
         IngredientScreen.routeName: (ctx) => IngredientScreen(),
+        Filter.routeName: ((ctx) => Filter()),
       },
       //       onGenerateRoute: (settings){
       // MaterialPageRoute(builder: (ctx)=> HomeScreen());
