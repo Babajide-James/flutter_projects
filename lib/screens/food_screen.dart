@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../dummies.dart';
+// import '../dummies.dart';
 import '../food_item.dart';
 import '../modal/modal.dart';
 
 class FoodScreen extends StatefulWidget {
-  const FoodScreen({super.key});
+  const FoodScreen({super.key, required this.availableMeals});
   static const routeName = '/food_screen';
+  final List<FoodModal> availableMeals;
 
   @override
   State<FoodScreen> createState() => _FoodScreenState();
@@ -28,7 +29,7 @@ class _FoodScreenState extends State<FoodScreen> {
           ModalRoute.of(context)!.settings.arguments as Map<String, String>;
       categoryTitle = routeArgs['title']!;
       final categoryId = routeArgs['id'];
-      categoryFood = FOOD_DUMMIES.where((ctx) {
+      categoryFood = widget.availableMeals.where((ctx) {
         return ctx.categories.contains(categoryId);
       }).toList();
       select = true;
@@ -55,7 +56,7 @@ class _FoodScreenState extends State<FoodScreen> {
       body: ListView.builder(
         itemCount: categoryFood.length,
         itemBuilder: (ctx, index) => FoodItem(
-          removeItem: _removeId,
+          // removeItem: _removeId,
           ingredients: categoryFood[index].ingredients,
           affordability: categoryFood[index].affordability,
           imageUrl: categoryFood[index].imageUrl,

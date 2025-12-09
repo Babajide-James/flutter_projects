@@ -3,7 +3,13 @@ import 'package:flutter/material.dart';
 import '../dummies.dart';
 
 class IngredientScreen extends StatelessWidget {
-  const IngredientScreen({super.key});
+  const IngredientScreen({
+    super.key,
+    required this.selectFavorite,
+    required this.toggleFavorite,
+  });
+  final Function selectFavorite;
+  final Function toggleFavorite;
   static const routeName = '/ingredient';
   // final String ingredient;
   @override
@@ -128,8 +134,8 @@ class IngredientScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.of(context).pop(idImage),
-        child: Icon(Icons.delete),
+        onPressed: () => selectFavorite(ids),
+        child: Icon(toggleFavorite(ids) ? Icons.star : Icons.star_border),
       ),
     );
   }

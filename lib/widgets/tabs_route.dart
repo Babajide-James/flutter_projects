@@ -2,14 +2,19 @@ import 'package:flutter/material.dart';
 
 import '../screens/home_screen.dart';
 import '../favorites.dart';
+import '../modal/modal.dart';
 
 class TabsRoute extends StatefulWidget {
-  const TabsRoute({super.key});
+  const TabsRoute({super.key, required this.favorites});
+  final List<FoodModal> favorites;
+
   @override
   State<TabsRoute> createState() => TabsRouteState();
 }
 
 class TabsRouteState extends State<TabsRoute> {
+  // List<FoodModal> favoriteMeals = [];
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -34,7 +39,12 @@ class TabsRouteState extends State<TabsRoute> {
             ],
           ),
         ),
-        body: TabBarView(children: [HomeScreen(), Favorites()]),
+        body: TabBarView(
+          children: [
+            HomeScreen(),
+            Favorites(favoriteMeals: widget.favorites),
+          ],
+        ),
       ),
     );
   }

@@ -3,19 +3,30 @@ import 'package:flutter/material.dart';
 import '../favorites.dart';
 import '../screens/home_screen.dart';
 import './main_drawer.dart';
+import '../modal/modal.dart';
 
 class BottomNav extends StatefulWidget {
-  const BottomNav({super.key});
+  const BottomNav({super.key, required this.favoriteMeal});
+  final List<FoodModal> favoriteMeal;
   @override
   State<BottomNav> createState() => BottomNavState();
 }
 
 class BottomNavState extends State<BottomNav> {
-  List<Map<String, dynamic>> routes = [
-    {'route': HomeScreen(), 'title': 'Categories'},
-    {'route': Favorites(), 'title': 'Your Favorites'},
-  ];
+  late List<Map<String, dynamic>> routes;
   int routesIndex = 0;
+
+  @override
+  initState() {
+    routes = [
+      {'route': HomeScreen(), 'title': 'Categories'},
+      {
+        'route': Favorites(favoriteMeals: widget.favoriteMeal),
+        'title': 'Your Favorites',
+      },
+    ];
+    super.initState();
+  }
 
   void onTap(int index) {
     setState(() {

@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import '../widgets/main_drawer.dart';
 
 class Filter extends StatefulWidget {
-  const Filter({super.key, required this.saveFilters});
+  const Filter({
+    super.key,
+    required this.saveFilters,
+    required this.currentFilter,
+  });
   static const routeName = '/favorite_route';
   final Function saveFilters;
+  final Map<String, bool> currentFilter;
 
   @override
   State<Filter> createState() => _FilterState();
@@ -16,6 +21,14 @@ class _FilterState extends State<Filter> {
   var _isVegan = false;
   var _isVegetarian = false;
   var _isLactoseFree = false;
+  @override
+  initState() {
+    _isGlutenFree = widget.currentFilter['gluten']!;
+    _isVegan = widget.currentFilter['vegan']!;
+    _isVegetarian = widget.currentFilter['vegetarian']!;
+    _isLactoseFree = widget.currentFilter['lactose']!;
+    super.initState();
+  }
 
   Widget filterSwitch(
     String title,

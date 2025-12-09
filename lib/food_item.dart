@@ -14,7 +14,7 @@ class FoodItem extends StatelessWidget {
     required this.id,
     required this.title,
     required this.ingredients,
-    required this.removeItem,
+    // required this.removeItem,
   });
   final String imageUrl;
   final int duration;
@@ -23,7 +23,7 @@ class FoodItem extends StatelessWidget {
   final Affordability affordability;
   final Complexity complexity;
   final List<String> ingredients;
-  final Function removeItem;
+  // final Function removeItem;
 
   String get complexityText {
     if (complexity == Complexity.simple) {
@@ -55,7 +55,7 @@ class FoodItem extends StatelessWidget {
     ).pushNamed(IngredientScreen.routeName, arguments: id);
     if (result != null) {
       final deleteItem = result as FoodModal;
-      removeItem(deleteItem.id);
+      // removeItem(deleteItem.id);
     }
   }
 

@@ -19,17 +19,50 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Map<String, bool> filters = {
     'vegan': false,
-    'glutenFree': false,
+    'gluten': false,
     'vegetarian': false,
-    'lactoseFree': false,
+    'lactose': false,
   };
   List<FoodModal> setFilters = FOOD_DUMMIES;
+  List<FoodModal> favoriteMeal = [];
   void filterSetting(Map<String, bool> filterData) {
     setState(() {
       filters = filterData;
 
-      setFilters = FOOD_DUMMIES.where((food) {}).toList();
+      setFilters = FOOD_DUMMIES.where((food) {
+        if (filters['vegan']! && !food.isVegan) {
+          return false;
+        }
+        if (filters['gluten']! && !food.isGlutenFree) {
+          return false;
+        }
+        if (filters['vegetarian']! && !food.isVegetarian) {
+          return false;
+        }
+        if (filters['lactose']! && !food.isLactoseFree) {
+          return false;
+        }
+        return true;
+      }).toList();
     });
+  }
+
+  void selectFavorite(String meal) {
+    final meals = favoriteMeal.indexWhere((ctx) => ctx.id == meal);
+    if (meals >= 0) {
+      setState(() {
+        favoriteMeal.removeAt((meals));
+      });
+    } else {
+      setState(
+        () =>
+            favoriteMeal.add(FOOD_DUMMIES.firstWhere((ctx) => ctx.id == meal)),
+      );
+    }
+  }
+
+  bool toggleFavorite(String meal) {
+    return favoriteMeal.any((meals) => meals.id == meal);
   }
 
   @override
@@ -48,16 +81,21 @@ class _MyAppState extends State<MyApp> {
       // home:  HomeScreen(),
       initialRoute: '/',
       routes: {
-        '/': (ctx) => BottomNav(),
-        FoodScreen.routeName: (ctx) => FoodScreen(setFilters),
-        IngredientScreen.routeName: (ctx) => IngredientScreen(),
-        Filter.routeName: ((ctx) => Filter(filterSetting)),
+        '/': (ctx) => BottomNav(favoriteMeal: favoriteMeal),
+        FoodScreen.routeName: (ctx) => FoodScreen(availableMeals: setFilters),
+        IngredientScreen.routeName: (ctx) => IngredientScreen(
+          selectFavorite: selectFavorite,
+          toggleFavorite: toggleFavorite,
+        ),
+        Filter.routeName: ((ctx) =>
+            Filter(saveFilters: filterSetting, currentFilter: filters)),
       },
       //       onGenerateRoute: (settings){
       // MaterialPageRoute(builder: (ctx)=> HomeScreen());
       //       },
       onUnknownRoute: (settings) {
         MaterialPageRoute(builder: (_) => HomeScreen());
+        return null;
       },
     );
   }
